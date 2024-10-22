@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:13-alpine
+    ports:
+      - "5433:5433"
+    command: ["postgres", "-c", "log_statement=all", "-c", "port=5433"]
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: rendernode
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - ./data:/var/lib/postgresql/data
